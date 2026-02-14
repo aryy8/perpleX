@@ -241,7 +241,7 @@ function render(): void {
       },
       {
         q: 'Is my text stored anywhere?',
-        a: 'No. Your text is sent directly from your browser to Google\'s Gemini API. We have no backend, no database, and no logging. Your content stays yours.'
+        a: 'No. Your text is sent directly from your browser to the API. We have no backend, no database, and no logging. Your content stays yours.'
       },
       {
         q: 'Will the output pass AI detectors?',
