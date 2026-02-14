@@ -247,10 +247,7 @@ function render(): void {
         q: 'Will the output pass AI detectors?',
         a: 'Our prompt is engineered to systematically remove AI writing patterns at every level — vocabulary, sentence structure, paragraph rhythm, and transitions. While no tool guarantees 100% bypass, perpleX consistently produces text that reads naturally human.'
       },
-      {
-        q: 'What AI models does perpleX use?',
-        a: 'perpleX uses Google\'s Gemini 2.0 Flash model for fast, high-quality text rewriting. The model processes your text with a carefully engineered prompt that targets AI writing patterns.'
-      },
+
     ])}
         </div>
       </div>
