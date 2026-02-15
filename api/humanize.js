@@ -56,8 +56,15 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Text is required' });
         }
 
+        // Debug log (safe: doesn't reveal key)
+        console.log('Environment Check:', {
+            hasKey: !!process.env.OPENROUTER_API_KEY,
+            nodeEnv: process.env.NODE_ENV,
+            vercelEnv: process.env.VERCEL_ENV
+        });
+
         if (!OPENROUTER_API_KEY) {
-            console.error('Missing OPENROUTER_API_KEY');
+            console.error('Missing OPENROUTER_API_KEY. Available keys:', Object.keys(process.env).filter(k => !k.includes('SECRET') && !k.includes('KEY')));
             return res.status(500).json({ error: 'Server misconfiguration: Missing API Key' });
         }
 
