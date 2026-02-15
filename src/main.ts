@@ -106,14 +106,12 @@ function render(): void {
                   </button>
                 </div>
               </div>
-              <div class="output-area" id="outputArea" role="region" aria-label="Humanized output text" aria-live="polite">
-                ${state.isProcessing
+              <div class="output-area" id="outputArea" role="region" aria-label="Humanized output text" aria-live="polite">${state.isProcessing
       ? `<div class="output-loading"><div class="loading-bar"></div><span>Humanizing your text...</span></div>`
       : state.outputText
         ? state.outputText
         : `<span class="output-placeholder">Your humanized text will appear here</span>`
-    }
-              </div>
+    }</div>
             </div>
           </div>
 

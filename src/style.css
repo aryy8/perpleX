@@ -334,8 +334,10 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
+  padding: 0 var(--space-lg);
+  height: 52px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  flex-shrink: 0;
 }
 
 .panel-label {
@@ -344,6 +346,9 @@ body::before {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .panel-actions {
@@ -386,9 +391,10 @@ body::before {
   resize: none;
   font-family: var(--font-primary);
   font-size: 0.9375rem;
-  line-height: 1.75;
+  line-height: 1.6;
   color: var(--text-primary);
   caret-color: var(--accent);
+  display: block;
 }
 
 .editor-textarea::placeholder {
@@ -401,17 +407,19 @@ body::before {
   padding: var(--space-lg);
   font-family: var(--font-primary);
   font-size: 0.9375rem;
-  line-height: 1.75;
+  line-height: 1.6;
   color: var(--text-primary);
   overflow-y: auto;
-  white-space: pre-line;
+  white-space: pre-wrap;
   word-wrap: break-word;
+  display: block;
 }
 
 .output-placeholder {
   color: var(--text-muted);
-  font-weight: 300;
+  font-weight: 310;
   font-style: italic;
+  display: block;
 }
 
 /* Loading state */
