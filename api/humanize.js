@@ -1,5 +1,5 @@
 
-import fetch from 'node-fetch'; // Vercel runtimes usually have fetch, but for safety in Node 18+ envs without it explicitly global (though it is global now). Actually, Vercel Node runtime standard is 18+. Global fetch is available.
+// fetch is available globally in Vercel Node.js runtime
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
