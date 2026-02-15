@@ -1,4 +1,9 @@
+import { inject } from '@vercel/analytics';
 import './style.css';
+
+// Initialize Vercel Analytics
+inject();
+
 
 // ============================================
 // perpleX — Text Humanizer
