@@ -160,7 +160,7 @@ function render(): void {
             <div class="why-number">01</div>
             <div class="why-content">
               <h3>Pattern destruction, not synonym swapping</h3>
-              <p>Most "humanizers" just replace words with synonyms. That's not how AI detection works. Detectors look at sentence rhythm, paragraph structure, transition patterns, and vocabulary distribution. perpleX rewrites at every one of those levels — it doesn't just change words, it changes how the text <em>thinks</em>.</p>
+              <p>Most "humanizers" just replace words with synonyms. That's not how AI detection works. Detectors look at sentence rhythm, paragraph structure, transition patterns, and vocabulary distribution. perpleX rewrites at every one of those levels, it doesn't just change words but also changes how the text <em>thinks</em>.</p>
             </div>
           </div>
 
@@ -176,7 +176,7 @@ function render(): void {
             <div class="why-number">03</div>
             <div class="why-content">
               <h3>Four tones, because context matters</h3>
-              <p>A blog post shouldn't read like an academic paper. A professional email shouldn't sound like a text message. Pick balanced, casual, professional, or academic — the output adapts its register, vocabulary, and structure to match what you actually need.</p>
+              <p>A blog post shouldn't read like an academic paper. A professional email shouldn't sound like a text message. Pick balanced, casual, professional, or academic, the output adapts its register, vocabulary, and structure to match what you actually need.</p>
             </div>
           </div>
 
@@ -235,11 +235,11 @@ function render(): void {
       },
       {
         q: 'Is my text stored anywhere?',
-        a: 'No. Your text is sent directly from your browser to the API. We have no backend, no database, and no logging. Your content stays yours.'
+        a: 'No. Your text is sent directly from your browser to the backend. We have no database, and no logging. Your content stays yours.'
       },
       {
         q: 'Will the output pass AI detectors?',
-        a: 'Our prompt is engineered to systematically remove AI writing patterns at every level — vocabulary, sentence structure, paragraph rhythm, and transitions. While no tool guarantees 100% bypass, perpleX consistently produces text that reads naturally human.'
+        a: 'Our engineering systematically removes AI writing patterns at every level of vocabulary, sentence structure, paragraph rhythm, and transitions. While no tool guarantees 100% bypass, perpleX consistently produces text that reads naturally human.'
       },
 
     ])}
