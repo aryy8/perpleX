@@ -23,6 +23,7 @@ interface AppState {
   outputText: string;
   isProcessing: boolean;
   tone: string;
+  isCompareMode: boolean;
 }
 
 const state: AppState = {
@@ -30,6 +31,7 @@ const state: AppState = {
   outputText: '',
   isProcessing: false,
   tone: 'academic',
+  isCompareMode: false,
 };
 
 // --- Render ---
@@ -101,15 +103,28 @@ function render(): void {
               <div class="panel-header">
                 <span class="panel-label">Output</span>
                 <div class="panel-actions">
+                  ${state.outputText ? `
+                  <div class="view-toggle">
+                    <button class="toggle-btn ${!state.isCompareMode ? 'active' : ''}" id="viewResultBtn">Result</button>
+                    <button class="toggle-btn ${state.isCompareMode ? 'active' : ''}" id="viewCompareBtn">Compare</button>
+                  </div>
+                  ` : ''}
                   <button class="icon-btn" id="copyBtn" title="Copy to clipboard" aria-label="Copy output text">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   </button>
                 </div>
               </div>
               <div class="output-area" id="outputArea" role="region" aria-label="Humanized output text" aria-live="polite">${state.isProcessing
-      ? `<div class="output-loading"><div class="loading-bar"></div><span>Humanizing your text...</span></div>`
+      ? `<div class="output-loading">
+            <div class="typing-loader">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+            <span>Generating human-like rhythms...<span class="cursor-loader"></span></span>
+         </div>`
       : state.outputText
-        ? state.outputText
+        ? (state.isCompareMode ? renderDiff(state.inputText, state.outputText) : state.outputText)
         : `<span class="output-placeholder">Your humanized text will appear here</span>`
     }</div>
             </div>
@@ -270,6 +285,28 @@ function getWordCount(): number {
   return text.split(/\s+/).length;
 }
 
+// --- Diff Utility ---
+
+function renderDiff(oldText: string, newText: string): string {
+  const oldWords = oldText.trim().split(/\s+/);
+
+  // Very simple word-level diff visualization
+  // Since we shouldn't add heavy diff libraries, we'll use a basic heuristic:
+  // Show new words that aren't in old words as added.
+  // This is a "relative" diff for visualization purposes.
+
+  const oldSet = new Set(oldWords.map(w => w.toLowerCase()));
+
+  return newText.split(/(\s+)/).map(part => {
+    if (/\s+/.test(part)) return part;
+    const cleanWord = part.replace(/[.,!?;:]/g, '').toLowerCase();
+    if (!oldSet.has(cleanWord)) {
+      return `<span class="diff-added">${part}</span>`;
+    }
+    return part;
+  }).join('');
+}
+
 // --- Toast ---
 
 let toastTimer: ReturnType<typeof setTimeout>;
@@ -359,6 +396,17 @@ function attachListeners(): void {
   document.getElementById('clearBtn')?.addEventListener('click', () => {
     state.inputText = '';
     state.outputText = '';
+    state.isCompareMode = false;
+    render();
+  });
+
+  // Toggle buttons
+  document.getElementById('viewResultBtn')?.addEventListener('click', () => {
+    state.isCompareMode = false;
+    render();
+  });
+  document.getElementById('viewCompareBtn')?.addEventListener('click', () => {
+    state.isCompareMode = true;
     render();
   });
 
